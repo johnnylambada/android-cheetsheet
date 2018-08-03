@@ -1,5 +1,6 @@
 package app.repolist;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ public class ListFragment extends Fragment {
     private FragmentListBinding binder;
     private Call<List<Repo>> getRepositoriesBackendCall;
     private RepoListAdapter adapter;
+    private ListViewModel viewModel;
 
     @Nullable
     @Override
@@ -43,25 +45,35 @@ public class ListFragment extends Fragment {
                         .commit()
         );
         adapter = new RepoListAdapter();
+        viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
         binder.list.setAdapter(adapter);
         return binder.getRoot();
     }
 
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        binder.progress.setVisibility(VISIBLE);
-        getRepositoriesBackendCall = RepoApi.getRepoService().getRepositories("Google");
-        getRepositoriesBackendCall.enqueue(new Callback<List<Repo>>() {
-            @Override public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                binder.progress.setVisibility(GONE);
-                adapter.setRepos(response.body());
-                getRepositoriesBackendCall = null;
+        viewModel.getRepos().observe(this, repos-> {
+            binder.list.setVisibility(View.VISIBLE);
+            if (repos!=null){
+                adapter.setRepos(repos);
             }
-
-            @Override public void onFailure(Call<List<Repo>> call, Throwable t) {
-                binder.progress.setVisibility(GONE);
-                binder.error.setVisibility(VISIBLE);
-                binder.error.setText("An BE error has occured");
-                getRepositoriesBackendCall = null;
+        });
+        viewModel.getRepoLoadError().observe(this, isError -> {
+            //noinspection ConstantConditions
+            if (isError) {
+                binder.list.setVisibility(View.GONE);
+                binder.error.setVisibility(View.VISIBLE);
+                binder.error.setText("A BE error has occured");
+            } else {
+                binder.error.setVisibility(View.GONE);
+                binder.error.setText(null);
+            }
+        });
+        viewModel.getRepoLoading().observe(this, isLoading ->{
+            //noinspection ConstantConditions
+            binder.progress.setVisibility(isLoading?View.VISIBLE:View.GONE);
+            if (isLoading){
+                binder.error.setVisibility(View.GONE);
+                binder.list.setVisibility(View.GONE);
             }
         });
     }
