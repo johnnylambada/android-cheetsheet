@@ -29,4 +29,5 @@ def supportLibVersion = "27.1.1"
 // All of the app dependencies. Stripped down to what is actually used.
 dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibVersion"
 }
