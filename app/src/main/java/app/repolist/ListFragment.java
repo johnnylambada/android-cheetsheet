@@ -1,4 +1,4 @@
-package app;
+package app.repolist;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.R;
 import app.databinding.FragmentListBinding;
 import app.databinding.ItemRepoBinding;
 import app.model.Repo;
@@ -26,9 +27,9 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binder = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false);
-        binder.getRoot().setOnClickListener(__->
+        binder.getRoot().setOnClickListener(__ ->
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.container,new DetailFragment())
+                        .replace(R.id.container, new DetailFragment())
                         .addToBackStack(null)
                         .commit()
         );
