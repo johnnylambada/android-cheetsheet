@@ -15,6 +15,10 @@ android {
         // The human readable version of your app. Can be anything you like
         versionName "1.0"
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 // Define all lib versions you use here to make them easy to update
