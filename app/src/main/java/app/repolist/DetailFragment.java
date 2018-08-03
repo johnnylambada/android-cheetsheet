@@ -1,4 +1,4 @@
-package app;
+package app.repolist;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import app.R;
 import app.databinding.FragmentDetailBinding;
 import app.model.Repo;
 
