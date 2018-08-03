@@ -24,10 +24,18 @@ android {
 }
 
 // Define all lib versions you use here to make them easy to update
+def moshiVersion = "1.6.0"
+def retrofitVersion = "2.3.0"
 def supportLibVersion = "27.1.1"
 
 // All of the app dependencies. Stripped down to what is actually used.
 dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibVersion"
+
+    // https://github.com/square/retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    // https://github.com/square/moshi
+    implementation "com.squareup.moshi:moshi:$moshiVersion"
 }
