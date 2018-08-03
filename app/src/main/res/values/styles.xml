@@ -1,0 +1,10 @@
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        // The color of the ActionBar
+        <item name="colorPrimary">@color/colorPrimary</item>
+        // The color of the Status Bar
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        // The color of the cursor
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>
