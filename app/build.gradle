@@ -19,6 +19,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    dataBinding { enabled = true }
 }
 
 // Define all lib versions you use here to make them easy to update
