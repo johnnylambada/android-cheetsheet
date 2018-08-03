@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        // The name of the app in the play store
+        applicationId "johnnylambada.cheetsheet"
+        // app is invisible to phones earlier than this.
+        // See: https://developer.android.com/about/dashboards/
+        minSdkVersion 19
+        // The API version you're compiling against
+        targetSdkVersion 27
+        // The internal version number. Once on the play store, it can't decrease
+        versionCode 1
+        // The human readable version of your app. Can be anything you like
+        versionName "1.0"
+    }
+}
+
+// Define all lib versions you use here to make them easy to update
+def supportLibVersion = "27.1.1"
+
+// All of the app dependencies. Stripped down to what is actually used.
+dependencies {
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+}
