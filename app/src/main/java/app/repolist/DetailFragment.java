@@ -1,5 +1,7 @@
 package app.repolist;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,14 +18,7 @@ import app.model.Repo;
 public class DetailFragment extends Fragment {
 
     private FragmentDetailBinding binder;
-
-    public static DetailFragment build(Repo repo) {
-        final Bundle args = new Bundle();
-        args.putSerializable("repo", repo);
-        final DetailFragment fragment = new DetailFragment();
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private SelectedRepoViewModel viewModel;
 
     @Nullable
     @Override
@@ -33,12 +28,20 @@ public class DetailFragment extends Fragment {
     }
 
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        final Repo repo = (Repo) getArguments().getSerializable("repo");
-        if (repo!=null) {
-            binder.repoName.setText(repo.name);
-            binder.repoDescription.setText(repo.description);
-            binder.repoForks.setText(String.valueOf(repo.forks));
-            binder.repoStars.setText(String .valueOf(repo.stars));
-        }
+        viewModel = ViewModelProviders.of(getActivity()).get(SelectedRepoViewModel.class);
+        viewModel.getSelectedRepo().observe(this, repo -> {
+            if (repo!=null) {
+                binder.repoName.setText(repo.name);
+                binder.repoDescription.setText(repo.description);
+                binder.repoForks.setText(String.valueOf(repo.forks));
+                binder.repoStars.setText(String .valueOf(repo.stars));
+            }
+        });
+        viewModel.restoreFromBundle(savedInstanceState);
+    }
+
+    @Override public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        viewModel.saveToBundle(outState);
     }
 }

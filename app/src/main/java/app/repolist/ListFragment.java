@@ -45,7 +45,7 @@ public class ListFragment extends Fragment {
                         .commit()
         );
         adapter = new RepoListAdapter();
-        viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity()).get(ListViewModel.class);
         binder.list.setAdapter(adapter);
         return binder.getRoot();
     }
@@ -120,8 +120,10 @@ public class ListFragment extends Fragment {
                 super(binding.getRoot());
                 this.binding = binding;
                 binding.getRoot().setOnClickListener(__->{
+                    ViewModelProviders.of(getActivity()).get(SelectedRepoViewModel.class)
+                            .setSelectedRepo(repo);
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container,DetailFragment.build(repo))
+                            .replace(R.id.container,new DetailFragment())
                             .addToBackStack(null)
                             .commit();
                 });
