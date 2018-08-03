@@ -3,7 +3,6 @@ package app;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import app.databinding.ActivityMainBinding;
 
@@ -15,5 +14,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        if (savedInstanceState==null){
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container,new ListFragment())
+                    .commit();
+        }
     }
 }
