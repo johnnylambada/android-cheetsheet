@@ -31,10 +31,10 @@ public class DetailFragment extends Fragment {
         viewModel = ViewModelProviders.of(getActivity()).get(SelectedRepoViewModel.class);
         viewModel.getSelectedRepo().observe(this, repo -> {
             if (repo!=null) {
-                binder.repoName.setText(repo.name);
-                binder.repoDescription.setText(repo.description);
-                binder.repoForks.setText(String.valueOf(repo.forks));
-                binder.repoStars.setText(String .valueOf(repo.stars));
+                binder.repoName.setText(repo.name());
+                binder.repoDescription.setText(repo.description());
+                binder.repoForks.setText(String.valueOf(repo.forks()));
+                binder.repoStars.setText(String .valueOf(repo.stars()));
             }
         });
         viewModel.restoreFromBundle(savedInstanceState);
