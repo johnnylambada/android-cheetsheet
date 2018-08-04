@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +18,7 @@ import app.R;
 import app.databinding.FragmentListBinding;
 import app.databinding.ItemRepoBinding;
 import app.model.Repo;
-import app.networking.RepoApi;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static android.view.View.GONE;
-import static android.view.View.VISIBLE;
 
 public class ListFragment extends Fragment {
 
