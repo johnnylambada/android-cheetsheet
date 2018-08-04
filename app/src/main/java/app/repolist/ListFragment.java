@@ -131,10 +131,10 @@ public class ListFragment extends Fragment {
 
             public void bind(Repo repo) {
                 this.repo = repo;
-                binding.repoName.setText(repo.name);
-                binding.repoDescription.setText(repo.description);
-                binding.repoForks.setText(String.valueOf(repo.forks));
-                binding.repoStars.setText(String.valueOf(repo.stars));
+                binding.repoName.setText(repo.name());
+                binding.repoDescription.setText(repo.description());
+                binding.repoForks.setText(String.valueOf(repo.forks()));
+                binding.repoStars.setText(String.valueOf(repo.stars()));
             }
         }
     }

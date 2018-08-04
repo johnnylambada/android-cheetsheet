@@ -25,6 +25,8 @@ android {
 
 // Define all lib versions you use here to make them easy to update
 def androidArchLifecycleVersion = "1.1.1"
+def autoValueVersion = '1.5.4'
+def autoValueMoshiVersion = '0.4.5'
 def moshiVersion = "1.6.0"
 def retrofitVersion = "2.3.0"
 def supportLibVersion = "27.1.1"
@@ -36,6 +38,14 @@ dependencies {
 
     // https://developer.android.com/topic/libraries/architecture/lifecycle (incl ViewModel + LiveData)
     implementation "android.arch.lifecycle:extensions:$androidArchLifecycleVersion"
+
+    // https://github.com/google/auto/blob/master/value/userguide/index.md
+    compileOnly "com.google.auto.value:auto-value:$autoValueVersion"
+    annotationProcessor "com.google.auto.value:auto-value:$autoValueVersion"
+
+    // https://github.com/rharter/auto-value-moshi
+    annotationProcessor "com.ryanharter.auto.value:auto-value-moshi:$autoValueMoshiVersion"
+    compileOnly "com.ryanharter.auto.value:auto-value-moshi-annotations:$autoValueMoshiVersion"
 
     // https://github.com/square/retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"

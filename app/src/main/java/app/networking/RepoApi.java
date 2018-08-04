@@ -1,5 +1,8 @@
 package app.networking;
 
+import com.squareup.moshi.Moshi;
+
+import app.model.ModelAdapterFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
@@ -19,7 +22,13 @@ public class RepoApi {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
-                    .addConverterFactory(MoshiConverterFactory.create())
+                    .addConverterFactory(
+                            MoshiConverterFactory.create(
+                                    new Moshi.Builder()
+                                        .add(ModelAdapterFactory.create())
+                                        .build()
+                            )
+                    )
                     .build();
         }
         repoService = retrofit.create(RepoService.class);
