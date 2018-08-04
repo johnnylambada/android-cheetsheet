@@ -1,6 +1,5 @@
 package app.repolist;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 
 import app.R;
 import app.databinding.FragmentDetailBinding;
-import app.model.Repo;
 
 public class DetailFragment extends Fragment {
 

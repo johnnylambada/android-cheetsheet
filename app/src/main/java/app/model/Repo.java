@@ -1,12 +1,13 @@
 package app.model;
 
-import java.io.Serializable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+
+import java.io.Serializable;
 
 
 @AutoValue
